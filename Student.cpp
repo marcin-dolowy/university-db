@@ -23,7 +23,7 @@ std::istream& operator>>(std::istream &in, Student &student) {
 }
 
 void Student::show_data_base(const std::vector<Student> &vec) {
-    for (int i = 0; i < vec.size(); ++i){
+    for (int i = 0; i < vec.size(); ++i) {
         std::cout << i + 1 << ". " << vec[i];
     }
 }
@@ -33,10 +33,8 @@ Student Student::search_by_surname(const std::vector<Student> &vec) {
     std::vector<Student> s1;
     std::cout << "TYPE SURNAME: ";
     std::cin >> surname_;
-    for(const auto & i : vec)
-    {
-        if(i.surname == surname_)
-        {
+    for(const auto & i : vec) {
+        if(i.surname == surname_) {
             return i;
         }
     }
@@ -47,10 +45,8 @@ Student Student::search_by_id(const std::vector<Student> &vec) {
     std::string id_;
     std::cout << "TYPE PESEL: ";
     std::cin >> id_;
-    for(const auto & i : vec)
-    {
-        if(i.id == id_)
-        {
+    for(const auto & i : vec) {
+        if(i.id == id_) {
             return i;
         }
     }
@@ -69,42 +65,35 @@ void Student::sort_by_surname(std::vector<Student> &vec) {
     });
 }
 
-//usuwanie przez numer indeksu
 void Student::deleted_by_idx_nr(std::vector<Student> &vec) {
     std::string idx_nr_;
     std::cout << "TYPE IDX_NR: ";
     std::cin >> idx_nr_;
-    for(int i = 0; i < vec.size(); ++i)
-    {
-        if(idx_nr_ == vec[i].idx_nr)
-        {
+    for(int i = 0; i < vec.size(); ++i) {
+        if(idx_nr_ == vec[i].idx_nr) {
             vec.erase(vec.begin() + i);
         }
     }
 }
 
-void Student::correct_id() const{
+void Student::correct_id() const {
     std::vector<int> vec {1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1};
     int a;
     int result = 0;
-    for(int i = 0; i < id.length(); i++)
-    {
+    for(int i = 0; i < id.length(); i++) {
         a = id[i] * vec[i];
         result += a;
     }
-    if(result > 0 && result % 10 == 0)
-    {
+    if(result > 0 && result % 10 == 0) {
         std::cout << "PESEL IS CORRECT" << '\n';
     }
-    else
-    {
+    else {
         std::cout << "PESEL IS INCORRECT!" << '\n';
     }
 }
 
 void Student::check_id_from_all_vector(const std::vector<Student>& vec) {
-    for(const auto & i : vec)
-    {
+    for(const auto & i : vec) {
         std::cout << i;
         i.correct_id();
     }
@@ -139,8 +128,7 @@ void Student::save_file(const std::vector<Student>& vec, const std::string &file
     if(!save.is_open()) {
         throw std::runtime_error("ERROR");
     }
-    for (const auto& i : vec)
-    {
+    for (const auto& i : vec) {
         save << i.name << '\n' << i.surname << '\n' << i.address << '\n'
         << i.idx_nr << '\n' << i.id << '\n'<< i.sex << '\n' << "============" << '\n';
     }

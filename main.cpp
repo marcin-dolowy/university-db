@@ -16,9 +16,10 @@ int main() {
                 std::cout << "Type nr: ";
                 std::cin >> choice;
                 switch (choice) {
-                    case 1:
+                    case 1: {
                         Student::show_data_base(s1);
                         break;
+                    }
                     case 2: {
                         Student::sort_by_id(s1);
                         Student::show_data_base(s1);
@@ -52,7 +53,7 @@ int main() {
                         Student::check_id_from_all_vector(s1);
                         break;
                     }
-                    case 9:{
+                    case 9: {
                         Student::save_file(s1, "data.txt");
                         break;
                     }
