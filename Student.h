@@ -31,6 +31,6 @@ public:
     static void deleted_by_idx_nr(std::vector<Student>& vec);
     void correct_id() const;
     static void check_id_from_all_vector(const std::vector<Student>& vec);
-    std::vector<Student> operator()(const std::string& filename);
-    //void menu();
+    static std::vector<Student> read_file(const std::string& filename);
+    static void save_file(const std::vector<Student>& vec, const std::string& filename);
 };

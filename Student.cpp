@@ -1,21 +1,20 @@
 #include "Student.h"
 
 void Student::info() const{
-        std::cout << name << " " << surname << " " << address << " " << "IDX_NR: " << idx_nr << " "
+        std::cout << name << " " << surname << " " << address << "\n " << "IDX_NR: " << idx_nr << "\n "
         << "PESEL: " << id << " " << sex << '\n';
 }
 
 std::ostream &operator<<(std::ostream &out, const Student &student) {
-    out << student.name << " " << student.surname << " " << student.address << " " << student.idx_nr << " "
-    << student.id << " " << student.sex << '\n';
-    return out;
+    return out << student.name << " " << student.surname << " " << student.address << " " << "IDX_NR: "
+    << student.idx_nr << " "<< "PESEL: " << student.id << " " << student.sex << '\n';
 }
 
 std::istream& operator>>(std::istream &in, Student &student) {
     std::cout << "TYPE NAME: ";
-    std::getline(in, student.name);
+    in >> student.name; in.get();
     std::cout << "TYPE SURNAME: ";
-    std::getline(in, student.surname);
+    in >> student.surname; in.get();
     std::cout << "TYPE ADDRESS: ";
     std::getline(in, student.address);
     std::cout << "TYPE INDEX NR: ";
@@ -23,13 +22,13 @@ std::istream& operator>>(std::istream &in, Student &student) {
     std::cout << "TYPE PESEL: ";
     in >> student.id; in.get();
     std::cout << "TYPE SEX: ";
-    std::getline(in, student.sex);
+    in >> student.sex; in.get();
     return in;
 }
 
 void Student::show_data_base(const std::vector<Student> &vec) {
-    for (const auto &i : vec){
-        i.info();
+    for (int i = 0; i < vec.size(); ++i){
+        std::cout << i + 1 << ". " << vec[i];
     }
 }
 
@@ -105,21 +104,20 @@ void Student::correct_id() const{
     {
         std::cout << "PESEL IS INCORRECT!" << '\n';
     }
-    result = 0;
 }
 
 void Student::check_id_from_all_vector(const std::vector<Student>& vec) {
     for(const auto & i : vec)
     {
-        i.info();
+        std::cout << i;
         i.correct_id();
     }
 }
 
-std::vector<Student> Student::operator()(const std::string &filename) {
+std::vector<Student> Student::read_file(const std::string &filename) {
     std::ifstream file;
     file.open(filename);
-    if(!file.good()) {
+    if(!file.is_open()) {
         throw std::runtime_error("");
     }
     std::string name_, surname_, address_, idx_nr_,id_, sex_;
@@ -139,17 +137,16 @@ std::vector<Student> Student::operator()(const std::string &filename) {
     return s;
 }
 
-/*void Student::menu()
-{
-    std::cout << "====================================" << '\n';
-    std::cout << "******** STUDENTS DATA BASE ********" << '\n';
-    std::cout << "====================================" << '\n';
-    std::cout << "1. Show all students" <<'\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME" << '\n'
-    << "4. Search student by SURNAME" << '\n' << "4. Search student by PESEL" << '\n' << "5. Delete by INDEX NUMBER" << '\n';
-    int choice;
-    switch (choice) {
-        case 1:
-            Student::show_data_base();
+void Student::save_file(const std::vector<Student>& vec, const std::string &filename) {
+    std::ofstream save;
+    save.open(filename, std::ios::app);
+    if(!save.is_open()) {
+        throw std::runtime_error("ERROR");
     }
-}*/
-
+    for (const auto& i : vec)
+    {
+        save << '\n' << i.name << '\n' << i.surname << '\n' << i.address << '\n'
+        << i.idx_nr << '\n' << i.id << '\n'<< i.sex << '\n' << "======" << '\n';
+    }
+    std::cout << "Saved successfully :)!" << '\n';
+}
