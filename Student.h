@@ -32,4 +32,5 @@ public:
     void correct_id() const;
     static void check_id_from_all_vector(const std::vector<Student>& vec);
     std::vector<Student> operator()(const std::string& filename);
+    //void menu();
 };

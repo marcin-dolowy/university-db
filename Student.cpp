@@ -139,3 +139,17 @@ std::vector<Student> Student::operator()(const std::string &filename) {
     return s;
 }
 
+/*void Student::menu()
+{
+    std::cout << "====================================" << '\n';
+    std::cout << "******** STUDENTS DATA BASE ********" << '\n';
+    std::cout << "====================================" << '\n';
+    std::cout << "1. Show all students" <<'\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME" << '\n'
+    << "4. Search student by SURNAME" << '\n' << "4. Search student by PESEL" << '\n' << "5. Delete by INDEX NUMBER" << '\n';
+    int choice;
+    switch (choice) {
+        case 1:
+            Student::show_data_base();
+    }
+}*/
+
