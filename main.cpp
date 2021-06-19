@@ -3,19 +3,14 @@
 int main() {
     while(true) {
         try {
-            std::vector<Student> s1 = Student::read_file("student.txt");
-            /*int AGE_MIN = 15;
-            int AGE_MAX = 30;
-            auto find_if = std::find_if(s1.begin(),s1.end(), age(s3,AGE_MIN,AGE_MAX));
-            std::cout << *find_if << std::endl;*/
-
+            std::vector<Student> s1 = Student::read_file("students.txt");
             std::cout << "====================================" << '\n';
             std::cout << "******** STUDENTS DATA BASE ********" << '\n';
             std::cout << "====================================" << '\n';
             std::cout << "1. Load all students from file" << '\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME" << '\n'
-                      << "4. Search student by SURNAME" << '\n' << "5. Search student by PESEL" << '\n'
-                      << "6. Add student" << '\n' << "7. Delete by INDEX NUMBER"
-                      << '\n' << "8. Check the correct id" << '\n' << "9. Save data" << '\n' << "10. Exit" << '\n';
+                      << "4. Search student by SURNAME" << '\n' << "5. Search student by PESEL" << '\n' << "6. Add student"
+                      << '\n' << "7. Delete by INDEX NUMBER" << '\n' << "8. Check the correctness PESEL in data base"
+                      << '\n' << "9. Save data" << '\n' << "10. Exit" << '\n';
             do {
                 int choice;
                 std::cout << "Type nr: ";
@@ -58,17 +53,7 @@ int main() {
                         break;
                     }
                     case 9:{
-                        Student s2;
-                        int a;
-                        std::cout << "How many student do you want to add: ";
-                        std::cin >> a;
-                        std::vector<Student> vec;
-                        for(int i = 0; i < a; ++i)
-                        {
-                            std::cin >> s2; std::cin.get();
-                            vec.emplace_back(s2);
-                        }
-                        Student::save_file(vec, "student.txt");
+                        Student::save_file(s1, "data.txt");
                         break;
                     }
                     case 10:

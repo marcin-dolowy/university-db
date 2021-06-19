@@ -1,13 +1,8 @@
 #include "Student.h"
 
-void Student::info() const{
-        std::cout << name << " " << surname << " " << address << "\n " << "IDX_NR: " << idx_nr << "\n "
-        << "PESEL: " << id << " " << sex << '\n';
-}
-
 std::ostream &operator<<(std::ostream &out, const Student &student) {
-    return out << student.name << " " << student.surname << " " << student.address << " " << "IDX_NR: "
-    << student.idx_nr << " "<< "PESEL: " << student.id << " " << student.sex << '\n';
+    return out << student.name << " " << student.surname << ", " << student.address << " " << " | IDX_NR: "
+    << student.idx_nr <<" | PESEL: " << student.id << " | SEX (M/F): " << student.sex << '\n';
 }
 
 std::istream& operator>>(std::istream &in, Student &student) {
@@ -21,8 +16,9 @@ std::istream& operator>>(std::istream &in, Student &student) {
     in >> student.idx_nr; in.get();
     std::cout << "TYPE PESEL: ";
     in >> student.id; in.get();
-    std::cout << "TYPE SEX: ";
-    in >> student.sex; in.get();
+    std::cout << "TYPE SEX (M/F): ";
+    in >> student.sex;
+    std::cout << '\n';
     return in;
 }
 
@@ -145,8 +141,8 @@ void Student::save_file(const std::vector<Student>& vec, const std::string &file
     }
     for (const auto& i : vec)
     {
-        save << '\n' << i.name << '\n' << i.surname << '\n' << i.address << '\n'
-        << i.idx_nr << '\n' << i.id << '\n'<< i.sex << '\n' << "======" << '\n';
+        save << i.name << '\n' << i.surname << '\n' << i.address << '\n'
+        << i.idx_nr << '\n' << i.id << '\n'<< i.sex << '\n' << "============" << '\n';
     }
-    std::cout << "Saved successfully :)!" << '\n';
+    std::cout << "Saved successfully :)!" << '\n' << "You saved data base in: " << filename << '\n';
 }

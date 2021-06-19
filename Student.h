@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <ostream>
 #include <string>
@@ -13,14 +14,14 @@ private:
     std::string idx_nr;
     std::string id;
     std::string sex;
-public:
-    Student(const std::string& name, const std::string& surname, const std::string& address, const std::string& idx_nr,
-            const std::string& id, const std::string& sex)
-    : name(name), surname(surname), address(address), idx_nr(idx_nr), id(id), sex(sex) {}
 
+public:
+    Student(std::string name, std::string surname, std::string address, std::string idx_nr,
+            std::string id, std::string sex)
+    : name(std::move(name)), surname(std::move(surname)), address(std::move(address)), idx_nr(std::move(idx_nr)),
+    id(std::move(id)), sex(std::move(sex)) {}
     Student() = default;
     ~Student() = default;
-    void info() const;
     friend std::ostream& operator<<(std::ostream& out, const Student& student);
     friend std::istream& operator>>(std::istream& in, Student& student);
     static void show_data_base(const std::vector<Student>& vec);
