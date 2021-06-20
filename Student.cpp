@@ -38,7 +38,7 @@ Student Student::search_by_surname(const std::vector<Student> &vec) {
             return i;
         }
     }
-    throw std::runtime_error("SURNAME NOT FOUND");
+    throw std::runtime_error("SURNAME NOT FOUND\n");
 }
 
 Student Student::search_by_id(const std::vector<Student> &vec) {
@@ -50,7 +50,7 @@ Student Student::search_by_id(const std::vector<Student> &vec) {
             return i;
         }
     }
-    throw std::runtime_error("PESEL NOT FOUND");
+    throw std::runtime_error("PESEL NOT FOUND\n");
 }
 
 void Student::sort_by_id(std::vector<Student> &vec) {
