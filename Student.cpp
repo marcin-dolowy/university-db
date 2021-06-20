@@ -103,7 +103,7 @@ std::vector<Student> Student::read_file(const std::string &filename) {
     std::ifstream file;
     file.open(filename);
     if(!file.is_open()) {
-        throw std::runtime_error("");
+        throw std::runtime_error("FILE NOT FOUND");
     }
     std::string name_, surname_, address_, idx_nr_,id_, sex_;
     std::string separator;
