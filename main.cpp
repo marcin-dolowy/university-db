@@ -44,7 +44,7 @@ int main() {
                         Student s3;
                         std::cin >> s3; std::cin.get();
                         s1.emplace_back(s3);
-                        std::cout << "You added one student! ;)";
+                        std::cout << "You added one student! ;)" << '\n';
                         break;
                     }
                     case 7: {
