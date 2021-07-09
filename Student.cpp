@@ -1,11 +1,11 @@
 #include "Student.h"
 
-std::ostream &operator<<(std::ostream &out, const Student &student) {
+std::ostream &operator<<(std::ostream& out, const Student& student) {
     return out << student.name << " " << student.surname << ", " << student.address << " " << " | IDX_NR: "
     << student.idx_nr <<" | PESEL: " << student.id << " | SEX (M/F): " << student.sex << '\n';
 }
 
-std::istream& operator>>(std::istream &in, Student &student) {
+std::istream& operator>>(std::istream& in, Student& student) {
     std::cout << "TYPE NAME: ";
     in >> student.name; in.get();
     std::cout << "TYPE SURNAME: ";
@@ -22,15 +22,14 @@ std::istream& operator>>(std::istream &in, Student &student) {
     return in;
 }
 
-void Student::show_data_base(const std::vector<Student> &vec) {
+void Student::show_data_base(const std::vector<Student>& vec) {
     for (int i = 0; i < vec.size(); ++i) {
         std::cout << i + 1 << ". " << vec[i];
     }
 }
 
-Student Student::search_by_surname(const std::vector<Student> &vec) {
+Student Student::search_by_surname(const std::vector<Student>& vec) {
     std::string surname_;
-    std::vector<Student> s1;
     std::cout << "TYPE SURNAME: ";
     std::cin >> surname_;
     for(const auto & i : vec) {
@@ -41,7 +40,7 @@ Student Student::search_by_surname(const std::vector<Student> &vec) {
     throw std::runtime_error("SURNAME NOT FOUND\n");
 }
 
-Student Student::search_by_id(const std::vector<Student> &vec) {
+Student Student::search_by_id(const std::vector<Student>& vec) {
     std::string id_;
     std::cout << "TYPE PESEL: ";
     std::cin >> id_;
@@ -53,19 +52,19 @@ Student Student::search_by_id(const std::vector<Student> &vec) {
     throw std::runtime_error("PESEL NOT FOUND\n");
 }
 
-void Student::sort_by_id(std::vector<Student> &vec) {
+void Student::sort_by_id(std::vector<Student>& vec) {
     std::sort(vec.begin(), vec.end(), [](const Student& lhs, const Student& rhs) {
         return lhs.id < rhs.id;
     });
 }
 
-void Student::sort_by_surname(std::vector<Student> &vec) {
+void Student::sort_by_surname(std::vector<Student>& vec) {
     std::sort(vec.begin(), vec.end(), [](const Student& lhs, const Student& rhs){
        return lhs.surname < rhs.surname;
     });
 }
 
-void Student::deleted_by_idx_nr(std::vector<Student> &vec) {
+void Student::deleted_by_idx_nr(std::vector<Student>& vec) {
     std::string idx_nr_;
     std::cout << "TYPE IDX_NR: ";
     std::cin >> idx_nr_;
@@ -99,7 +98,7 @@ void Student::check_id_from_all_vector(const std::vector<Student>& vec) {
     }
 }
 
-std::vector<Student> Student::read_file(const std::string &filename) {
+std::vector<Student> Student::read_file(const std::string& filename) {
     std::ifstream file;
     file.open(filename);
     if(!file.is_open()) {
@@ -122,7 +121,7 @@ std::vector<Student> Student::read_file(const std::string &filename) {
     return s;
 }
 
-void Student::save_file(const std::vector<Student>& vec, const std::string &filename) {
+void Student::save_file(const std::vector<Student>& vec, const std::string& filename) {
     std::ofstream save;
     save.open(filename, std::ios::app);
     if(!save.is_open()) {

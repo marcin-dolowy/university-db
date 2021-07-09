@@ -8,7 +8,6 @@ private:
     std::string idx_nr;
     std::string id;
     std::string sex;
-
 public:
     Student(std::string name, std::string surname, std::string address,
             std::string idx_nr, std::string id, std::string sex)
