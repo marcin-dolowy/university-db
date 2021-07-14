@@ -30,8 +30,9 @@ void Student::set_idx_nr(const std::string& idx_nr_) {
 
 void Student::set_id(const std::string& id_) {
     if(id_.length() != 11) {
-        this->id = id_;
+        throw std::runtime_error("PESSEL HAS TO HAVE 11 DIGITS\n");
     }
+    this->id = id_;
 }
 
 void Student::set_sex(const std::string& sex_) {

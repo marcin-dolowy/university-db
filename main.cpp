@@ -70,6 +70,7 @@ int main() {
 
         while (true) {
             std::vector<Student> s1 = Student::read_file("students.txt");
+
             do {
                 menu(s1);
             } while (true);
