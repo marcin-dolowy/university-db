@@ -29,7 +29,8 @@ void menu(std::vector<Student>& s1) {
         }
         case '6': {
             Student s3;
-            std::cin >> s3; std::cin.get();
+            std::cin >> s3;
+            std::cin.get();
             s1.emplace_back(s3);
             std::cout << "You added one student! ;)" << '\n';
             break;
@@ -57,24 +58,25 @@ void menu(std::vector<Student>& s1) {
 }
 
 int main() {
+    try {
+        std::cout << "====================================" << '\n';
+        std::cout << "******** STUDENTS DATA BASE ********" << '\n';
+        std::cout << "====================================" << '\n';
+        std::cout << "1. Load all students from file" << '\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME"
+                  << '\n'
+                  << "4. Search student by SURNAME" << '\n' << "5. Search student by PESEL" << '\n' << "6. Add student"
+                  << '\n' << "7. Delete by INDEX NUMBER" << '\n' << "8. Check the correctness PESEL in data base"
+                  << '\n' << "9. Save data" << '\n' << "0. Exit" << '\n';
 
-    std::cout << "====================================" << '\n';
-    std::cout << "******** STUDENTS DATA BASE ********" << '\n';
-    std::cout << "====================================" << '\n';
-    std::cout << "1. Load all students from file" << '\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME" << '\n'
-              << "4. Search student by SURNAME" << '\n' << "5. Search student by PESEL" << '\n' << "6. Add student"
-              << '\n' << "7. Delete by INDEX NUMBER" << '\n' << "8. Check the correctness PESEL in data base"
-              << '\n' << "9. Save data" << '\n' << "0. Exit" << '\n';
-
-    while(true) {
-        try {
+        while (true) {
             std::vector<Student> s1 = Student::read_file("students.txt");
             do {
                 menu(s1);
             } while (true);
         }
-        catch (std::runtime_error &e) {
-            std::cout << e.what();
-        }
     }
+    catch (std::runtime_error &e) {
+        std::cout << e.what();
+    }
+
 }
