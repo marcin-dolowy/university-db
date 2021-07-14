@@ -1,5 +1,56 @@
 #include "Student.h"
 
+void Student::set_name(const std::string& name_) {
+    if(name_.length() < 0 || name_.length() > 20) {
+        throw std::runtime_error("WRONG NAME\n");
+    }
+    this->name = name_;
+}
+
+void Student::set_surname(const std::string& surname_) {
+    if(surname_.length() < 0 || surname_.length() > 50) {
+        throw std::runtime_error("WRONG SURNAME\n");
+    }
+    this->surname = surname_;
+}
+
+void Student::set_address(const std::string& address_) {
+    if(address_.length() < 0 || address_.length() > 150) {
+        throw std::runtime_error("WRONG ADDRESS\n");
+    }
+    this->address = address_;
+}
+
+void Student::set_idx_nr(const std::string& idx_nr_) {
+    if(idx_nr_.length() != 6) {
+        throw std::runtime_error("INDEX NUMBER HAS TO HAVE 6 DIGITS\n");
+    }
+    this->idx_nr = idx_nr_;
+}
+
+void Student::set_id(const std::string& id_) {
+    if(id_.length() != 11) {
+        this->id = id_;
+    }
+}
+
+void Student::set_sex(const std::string& sex_) {
+    if(sex_.length() < 0 || sex_.length() > 15) {
+        throw std::runtime_error("WRONG VALUE OF SEX\n");
+    }
+    this->sex = sex_;
+}
+
+Student::Student(const std::string &name, const std::string &surname, const std::string &address,
+                 const std::string &idx_nr, const std::string &id, const std::string &sex) {
+    set_name(name);
+    set_surname(surname);
+    set_address(address);
+    set_idx_nr(idx_nr);
+    set_id(id);
+    set_sex(sex);
+}
+
 std::ostream &operator<<(std::ostream& out, const Student& student) {
     return out << student.name << " " << student.surname << ", " << student.address << " " << " | IDX_NR: "
     << student.idx_nr <<" | PESEL: " << student.id << " | SEX (M/F): " << student.sex << '\n';
