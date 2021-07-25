@@ -25,7 +25,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Student& student);
     friend std::istream& operator>>(std::istream& in, Student& student);
     static void show_data_base(const std::vector<Student>& vec);
-    static Student search_by_surname(const std::vector<Student>& vec);
+    static std::vector<Student> search_by_surname(const std::vector<Student>& vec);
     static Student search_by_id(const std::vector<Student>& vec);
     static void sort_by_id(std::vector<Student>& vec);
     static void sort_by_surname(std::vector<Student>& vec);

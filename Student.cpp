@@ -30,7 +30,7 @@ void Student::set_idx_nr(const std::string& idx_nr_) {
 
 void Student::set_id(const std::string& id_) {
     if(id_.length() != 11) {
-        throw std::runtime_error("PESSEL HAS TO HAVE 11 DIGITS\n");
+        throw std::runtime_error("PESEL HAS TO HAVE 11 DIGITS\n");
     }
     this->id = id_;
 }
@@ -42,8 +42,8 @@ void Student::set_sex(const std::string& sex_) {
     this->sex = sex_;
 }
 
-Student::Student(const std::string &name, const std::string &surname, const std::string &address,
-                 const std::string &idx_nr, const std::string &id, const std::string &sex) {
+Student::Student(const std::string& name, const std::string& surname, const std::string& address,
+                 const std::string& idx_nr, const std::string& id, const std::string& sex) {
     set_name(name);
     set_surname(surname);
     set_address(address);
@@ -52,7 +52,7 @@ Student::Student(const std::string &name, const std::string &surname, const std:
     set_sex(sex);
 }
 
-std::ostream &operator<<(std::ostream& out, const Student& student) {
+std::ostream& operator<<(std::ostream& out, const Student& student) {
     return out << student.name << " " << student.surname << ", " << student.address << " " << " | IDX_NR: "
     << student.idx_nr <<" | PESEL: " << student.id << " | SEX (M/F): " << student.sex << '\n';
 }
@@ -80,16 +80,20 @@ void Student::show_data_base(const std::vector<Student>& vec) {
     }
 }
 
-Student Student::search_by_surname(const std::vector<Student>& vec) {
+std::vector<Student> Student::search_by_surname(const std::vector<Student>& vec) {
     std::string surname_;
+    std::vector<Student> result;
     std::cout << "TYPE SURNAME: ";
     std::cin >> surname_;
     for(const auto & i : vec) {
         if(i.surname == surname_) {
-            return i;
+            result.emplace_back(i);
+        }
+        else {
+            throw std::runtime_error("SURNAME NOT FOUND!\n");
         }
     }
-    throw std::runtime_error("SURNAME NOT FOUND\n");
+    return result;
 }
 
 Student Student::search_by_id(const std::vector<Student>& vec) {
@@ -168,7 +172,7 @@ std::vector<Student> Student::read_file(const std::string& filename) {
         std::getline(file, id_);
         std::getline(file, sex_);
         std::getline(file, separator);
-        s.emplace_back(name_, surname_, address_, idx_nr_, id_, sex_);
+        s.emplace_back(Student{name_, surname_, address_, idx_nr_, id_, sex_});
     }
     return s;
 }

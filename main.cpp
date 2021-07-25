@@ -20,7 +20,9 @@ void menu(std::vector<Student>& s1) {
             break;
         }
         case '4': {
-            std::cout << Student::search_by_surname(s1);
+            Student s2;
+            std::vector<Student> result = Student::search_by_surname(s1);
+            Student::show_data_base(result);
             break;
         }
         case '5': {
@@ -59,14 +61,13 @@ void menu(std::vector<Student>& s1) {
 
 int main() {
     try {
-        std::cout << "====================================" << '\n';
-        std::cout << "******** STUDENTS DATA BASE ********" << '\n';
-        std::cout << "====================================" << '\n';
-        std::cout << "1. Load all students from file" << '\n' << "2. Sort by PESEL" << '\n' << "3. Sort by SURNAME"
-                  << '\n'
-                  << "4. Search student by SURNAME" << '\n' << "5. Search student by PESEL" << '\n' << "6. Add student"
-                  << '\n' << "7. Delete by INDEX NUMBER" << '\n' << "8. Check the correctness PESEL in data base"
-                  << '\n' << "9. Save data" << '\n' << "0. Exit" << '\n';
+        std::cout << "====================================\n";
+        std::cout << "******** STUDENTS DATA BASE ********\n";
+        std::cout << "====================================\n";
+        std::cout << "1. Load all students from file\n" << "2. Sort by PESEL\n" << "3. Sort by SURNAME\n"
+        << "4. Search student by SURNAME\n" << "5. Search student by PESEL\n" << "6. Add student\n"
+        << "7. Delete by INDEX NUMBER\n" << "8. Check the correctness PESEL in data base\n"
+        << "9. Save data\n" << "0. Exit\n";
 
         while (true) {
             std::vector<Student> s1 = Student::read_file("students.txt");
